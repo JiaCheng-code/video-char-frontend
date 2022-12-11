@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {FC, useEffect, useRef} from 'react';
+import {connectWithSocket} from "./utils/wssConnection/wssConnection";
+import {BrowserRouter,Routes} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App:FC = () => {
+    // 获取页面第一次渲染，解决页面渲染两次问题
+    const firstRenderRef = useRef<boolean>(true)
+    useEffect(():void=>{
+        if(firstRenderRef.current){
+            firstRenderRef.current = false;
+            return;
+        }
+        connectWithSocket();
+    },[])
+    return (
+        <BrowserRouter>
+            <Routes></Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
