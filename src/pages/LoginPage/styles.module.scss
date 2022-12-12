@@ -1,0 +1,34 @@
+.loginPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .loginBox {
+    width: 350px;
+    height: 500px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .logoContainer {
+      width: 80%;
+      display: flex;
+      justify-content: center;
+
+      .logoImage {
+        width: 200px;
+      }
+    }
+    .titleContainer {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
