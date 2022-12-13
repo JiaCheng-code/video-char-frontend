@@ -1,0 +1,15 @@
+.loginPageInput_container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  .loginPageInput {
+    width: 150px;
+    border-radius: 50px;
+    height: 30px;
+    outline:none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 10px;
+  }
+}
