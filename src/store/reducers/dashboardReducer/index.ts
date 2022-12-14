@@ -3,14 +3,14 @@ import {userNameType} from "../../action/dashboardAction/types";
 import {initialStateType} from "./types";
 
 const initialState: initialStateType = {
-    username: ''
+    userName: ''
 }
 
 const reducer = (state = initialState, action: userNameType) => {
     switch (action.type) {
         case dashboardActions.DASHBOARD_SET_USERNAME:
             return {
-                ...state, username: action.username
+                ...state, userName: action.userName
             };
         default:
             return state

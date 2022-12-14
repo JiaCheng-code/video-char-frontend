@@ -1,7 +1,11 @@
 import React, {FC} from "react";
 import styles from './styles.module.scss'
-import {UserNameTypes} from "./types";
 import classNames from "classnames";
+
+export interface UserNameTypes {
+    userName:string,
+    setUserName: React.Dispatch<React.SetStateAction<string>>
+}
 
 const UserNameInput: FC<UserNameTypes> = ({userName, setUserName}: UserNameTypes) => {
     return (
