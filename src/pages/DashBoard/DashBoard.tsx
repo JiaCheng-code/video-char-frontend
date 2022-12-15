@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import logo from '../../resources/logo.png'
+import ActiveUserList from "./components/ActiveUserList/ActiveUserList";
 
 const DashBoard:FC = ()=>{
     return (
@@ -16,7 +17,7 @@ const DashBoard:FC = ()=>{
             </div>
             <div className={classNames(styles.dashboard_right,'background_secondary_color')}>
                 <div className={styles.dashboard_active_users_list}>
-                    活跃用户
+                    <ActiveUserList/>
                 </div>
                 <div className={styles.dashboard_logo_container}>
                     <img className={styles.dashboard_logo_image} src={logo} alt=""/>
