@@ -1,16 +1,20 @@
 import * as dashboardActions from '../../action/dashboardAction'
-import {userNameType} from "../../action/dashboardAction/types";
-import {initialStateType} from "./types";
+import {actionType, initialStateType} from "./types";
 
 const initialState: initialStateType = {
-    userName: ''
+    userName: '',
+    activeUsers:[]
 }
 
-const reducer = (state = initialState, action: userNameType) => {
+const reducer = (state = initialState, action: actionType) => {
     switch (action.type) {
         case dashboardActions.DASHBOARD_SET_USERNAME:
             return {
                 ...state, userName: action.userName
+            };
+        case dashboardActions.DASHBOARD_SET_ACTIVE_USERS:
+            return {
+                ...state, activeUsers: action.activeUsers
             };
         default:
             return state

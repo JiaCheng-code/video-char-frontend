@@ -1,4 +1,4 @@
 export interface activeUserType {
-    socketId: number
+    socketId: string | number
     username: string
 }

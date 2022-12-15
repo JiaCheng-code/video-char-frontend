@@ -8,10 +8,8 @@ import SumbitButton from "./components/SubmitButton/SumbitButton";
 import styles from './styles.module.scss'
 import {useDispatch} from "react-redux";
 import {setUserNameAction} from "../../store/action/dashboardAction";
+import {registerNewUser} from "../../utils/wssConnection/wssConnection";
 
-interface mapActionToPropsTypes {
-    saveUserName: Function
-}
 
 const LoginPage: FC = () => {
     let [userName, setUserName] = useState<string>('')
@@ -20,9 +18,11 @@ const LoginPage: FC = () => {
     const navigate: NavigateFunction = useNavigate()
 
     const handleSummitButtonPressed: Function = () => {
-        //保存用户信息
+        // 注册新用户
+        registerNewUser(userName)
+        // 保存用户信息
         dispath(setUserNameAction(userName))
-        //跳转
+        // 跳转
         navigate('/dashboard');
     };
     return (
