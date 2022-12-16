@@ -3,6 +3,7 @@ import socketClient, {Socket} from 'socket.io-client';
 import {broadcastType} from "./types";
 import store from "../../store/store";
 import {setActiveUsers} from "../../store/action/dashboardAction";
+import {activeUserType} from "../../pages/DashBoard/components/ActiveUserList/types";
 
 const SERVER: string = 'http://localhost:8000';
 const broadcastEventType = {
@@ -35,6 +36,9 @@ export const registerNewUser = (username: string) => {
 const handleBroadcastEvents = (data:broadcastType)=>{
     switch (data.event) {
         case broadcastEventType.ACTIVE_USERS:
-            return store.dispatch(setActiveUsers(data.activeUsers))
+            const activeUsers = data.activeUsers.filter((activeUser:activeUserType)=>{
+                return activeUser.socketId!==socket.id
+            })
+            return store.dispatch(setActiveUsers(activeUsers))
     }
 }
