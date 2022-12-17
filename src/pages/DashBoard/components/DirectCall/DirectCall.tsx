@@ -2,6 +2,9 @@ import React, {FC} from "react";
 import {useSelector} from "react-redux";
 import {actionType} from "../../../../store/reducers/callReducer/types";
 import LocalVideoView from "../LocalVideoView/LocalVideoView";
+import CallRejectDialog from "../../../../components/CallRejectDialog/CallRejectDialog";
+import IncomingCallDialog from "../../../../components/IncomingCallDialog/IncomingCallDialog";
+import CallingDialog from "../../../../components/CallingDialog/CallingDialog";
 
 
 interface callSelectorType {
@@ -16,6 +19,9 @@ const DirectCall: FC = () => {
     return (
         <>
             <LocalVideoView localStream={localStream}/>
+            {/*<CallRejectDialog/>*/}
+            {/*<IncomingCallDialog/>*/}
+            {/*<CallingDialog />*/}
         </>
     )
 }
