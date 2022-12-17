@@ -1,6 +1,6 @@
-
 export interface actionType {
-    type:string
+    type: string
     localStream: MediaStream,
-    remoteStream: MediaStream
+    remoteStream: MediaStream,
+    callState: string
 }
