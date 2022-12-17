@@ -2,7 +2,8 @@ import * as callAction from '../../action/callAction'
 import {actionType} from "./types";
 
 const initialState = {
-    localStream: null
+    localStream: null,
+    remoteStream: null,
 }
 
 const reducer = (state = initialState, action: actionType) => {
@@ -12,6 +13,11 @@ const reducer = (state = initialState, action: actionType) => {
                 ...state,
                 localStream: action.localStream
             }
+        case callAction.CALL_SET_REMOTE_STREAM:
+            return {
+                ...state,
+                remoteStream: action.remoteStream,
+            };
         default:
             return state
     }
