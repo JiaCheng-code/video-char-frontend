@@ -2,7 +2,11 @@ import React, {FC} from "react";
 import styles from './styles.module.scss'
 import classNames from "classnames";
 
-const IncomingCallDialog: FC = () => {
+interface IncomingCallDialogType{
+    callerUserName:string
+}
+
+const IncomingCallDialog: FC<IncomingCallDialogType> = ({callerUserName}:IncomingCallDialogType) => {
     const handleAcceptButtonPressed = () => {
         // 接听呼叫
     }
@@ -11,7 +15,7 @@ const IncomingCallDialog: FC = () => {
     }
     return (
         <div className={classNames(styles.direct_calling_dialog, 'background_secondary_color')}>
-            <span className={styles.direct_call_dialog_caller_name}>Summer的来电</span>
+            <span className={styles.direct_call_dialog_caller_name}>{callerUserName}的来电</span>
             <div className={styles.direct_call_dialog_button_container}>
                 <button className={styles.direct_call_dialog_accept_button}
                         onClick={(e) => handleAcceptButtonPressed()}>接听

@@ -5,23 +5,24 @@ import LocalVideoView from "../LocalVideoView/LocalVideoView";
 import CallRejectDialog from "../../../../components/CallRejectDialog/CallRejectDialog";
 import IncomingCallDialog from "../../../../components/IncomingCallDialog/IncomingCallDialog";
 import CallingDialog from "../../../../components/CallingDialog/CallingDialog";
-
+import {callState as callStateAction} from "../../../../store/action/callAction";
 
 interface callSelectorType {
     call: actionType
 }
 
 const DirectCall: FC = () => {
-    const localStream = useSelector<callSelectorType, MediaStream | null>((state): MediaStream | null => {
-        return state.call.localStream
+    const callData: actionType = useSelector<callSelectorType, actionType>((state) => {
+        return state.call
     })
+    const {localStream, remoteStream, callerUserName, callState, callingDialogVisible}:actionType = callData
 
     return (
         <>
             <LocalVideoView localStream={localStream}/>
             {/*<CallRejectDialog/>*/}
-            {/*<IncomingCallDialog/>*/}
-            {/*<CallingDialog />*/}
+            {(callState === callStateAction.CALL_REQUESTED) && <IncomingCallDialog callerUserName={callerUserName}/>}
+            {callingDialogVisible && <CallingDialog/>}
         </>
     )
 }

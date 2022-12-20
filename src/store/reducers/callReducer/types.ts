@@ -2,5 +2,7 @@ export interface actionType {
     type: string
     localStream: MediaStream,
     remoteStream: MediaStream,
-    callState: string
+    callState: string,
+    callingDialogVisible:boolean,
+    callerUserName:string
 }

@@ -1,10 +1,13 @@
 // 本地媒体流
-import {callStateType} from "./types";
+// import {callStateType} from "./types";
 
 export const CALL_SET_LOCL_STREM = 'CALL_SET_LOCL_STREM'
 // 远端媒体流
 export const CALL_SET_REMOTE_STREAM = 'CALL_SET_REMOTE_STREAM';
 export const CALL_SET_CALL_STATE  = 'CALL_SET_CALL_STATE'
+
+export const CALL_SET_CALLING_STATE = 'CALL_SET_CALLING_STATE'
+export const CALL_SET_CALLER_USERNAME = 'CALL_SET_CALLER_USERNAME'
 /*
 * 呼叫状态
 * CALL_UNAVATLABLE 不可用，没有获取媒体流
@@ -39,5 +42,20 @@ export const setCallState = (callState: string)=>{
     return {
         type:CALL_SET_CALL_STATE,
         callState
+    }
+}
+
+// 设置呼叫框的状态
+export const setCallingDialogVisble = (callingDialogVisible:boolean)=>{
+    return {
+        type:CALL_SET_CALLING_STATE,
+        callingDialogVisible
+    }
+}
+// 设置呼叫者的用户姓名
+export const setCallerUsername = (callerUsername:string)=>{
+    return {
+        type:CALL_SET_CALLER_USERNAME,
+        callerUsername
     }
 }

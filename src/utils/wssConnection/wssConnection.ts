@@ -1,9 +1,10 @@
 import {DefaultEventsMap} from '@socket.io/component-emitter';
 import socketClient, {Socket} from 'socket.io-client';
-import {broadcastType} from "./types";
+import {broadcastType, preOfferType} from "./types";
 import store from "../../store/store";
 import {setActiveUsers} from "../../store/action/dashboardAction";
 import {activeUserType} from "../../pages/DashBoard/components/ActiveUserList/types";
+import * as webRTCHandler from '../webRtc/webRtcHandler'
 
 const SERVER: string = 'http://localhost:8000';
 const broadcastEventType = {
@@ -24,6 +25,10 @@ export const connectWithSocket = (): void => {
         // 将用户放在store中
         handleBroadcastEvents(data)
     })
+    // 应答方监听从服务器返回的呼叫者传递的data数据
+    socket.on('pre-offer',(data)=>{
+        webRTCHandler.handlePreOffer(data)
+    })
 }
 // 注册新用户
 export const registerNewUser = (username: string) => {
@@ -41,4 +46,9 @@ const handleBroadcastEvents = (data:broadcastType)=>{
             })
             return store.dispatch(setActiveUsers(activeUsers))
     }
+}
+
+//向服务器发送预呼叫数据
+export const sendPreOffer = (data:preOfferType)=>{
+    socket.emit('pre-offer',data)
 }
