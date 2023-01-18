@@ -6,10 +6,16 @@ export interface broadcastType {
     activeUsers: Array<activeUserType>
 }
 
-export interface preOfferType{
-    callee:activeUserType,
-    caller:callerType
+export interface preOfferType {
+    callee: activeUserType,
+    caller: callerType
 }
-interface callerType{
-    username:string
+
+interface callerType {
+    username: string
+}
+
+export interface sendPreOfferAnswerType {
+    callerSocketId: string | number,
+    answer: string
 }

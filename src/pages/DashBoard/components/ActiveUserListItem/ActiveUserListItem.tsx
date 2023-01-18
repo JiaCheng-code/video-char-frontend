@@ -11,10 +11,11 @@ interface activeUserListItemType {
 
 const ActiveUserListItem: FC<activeUserListItemType> = ({activeUser}: activeUserListItemType) => {
     const handleListItemPressed = ()=>{
+        console.log(123)
         //点击活跃用户进行呼叫
         callToOtherUser(activeUser)
     }
-    return (<div className={styles.active_user_list_item} onClick={(e)=>handleListItemPressed}>
+    return (<div className={styles.active_user_list_item} onClick={(e)=>handleListItemPressed()}>
         <div className={styles.active_user_list_image_container}>
             <img className={styles.active_user_list_image} src={userAvatar} alt=""/>
         </div>

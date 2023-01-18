@@ -1,6 +1,6 @@
 import {DefaultEventsMap} from '@socket.io/component-emitter';
 import socketClient, {Socket} from 'socket.io-client';
-import {broadcastType, preOfferType} from "./types";
+import {broadcastType, preOfferType, sendPreOfferAnswerType} from "./types";
 import store from "../../store/store";
 import {setActiveUsers} from "../../store/action/dashboardAction";
 import {activeUserType} from "../../pages/DashBoard/components/ActiveUserList/types";
@@ -29,6 +29,10 @@ export const connectWithSocket = (): void => {
     socket.on('pre-offer',(data)=>{
         webRTCHandler.handlePreOffer(data)
     })
+    // 呼叫方监听从服务器回复的data数据
+    socket.on('pre-offer-answer',(data)=>{
+        webRTCHandler.handlePreOfferAnswer(data)
+    })
 }
 // 注册新用户
 export const registerNewUser = (username: string) => {
@@ -51,4 +55,9 @@ const handleBroadcastEvents = (data:broadcastType)=>{
 //向服务器发送预呼叫数据
 export const sendPreOffer = (data:preOfferType)=>{
     socket.emit('pre-offer',data)
+}
+
+// 向服务器发送预呼叫处理
+export const sendPreOfferAnswer = (data:sendPreOfferAnswerType)=>{
+    socket.emit('pre-offer-answer',data)
 }
