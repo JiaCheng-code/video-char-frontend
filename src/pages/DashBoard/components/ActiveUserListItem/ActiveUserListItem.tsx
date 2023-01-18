@@ -11,7 +11,8 @@ interface activeUserListItemType {
 
 const ActiveUserListItem: FC<activeUserListItemType> = ({activeUser}: activeUserListItemType) => {
     const handleListItemPressed = ()=>{
-        console.log(123)
+        // console.log(123)
+        // console.log(activeUser)
         //点击活跃用户进行呼叫
         callToOtherUser(activeUser)
     }

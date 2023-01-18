@@ -1,13 +1,17 @@
 import * as callAction from '../../action/callAction'
 import {actionType} from "./types";
-import {callState} from "../../action/callAction";
+import { callState} from "../../action/callAction";
 
 const initialState = {
     localStream: null,
     remoteStream: null,
     callState: callState.CALL_UNAVATLABLE,
-    callingDialogVisible:false,
-    callerUserName:''
+    callingDialogVisible: false,
+    callerUserName: '',
+    callRejected: {
+        rejected: false,
+        reason: ''
+    }
 }
 
 const reducer = (state = initialState, action: actionType) => {
@@ -27,15 +31,22 @@ const reducer = (state = initialState, action: actionType) => {
                 ...state,
                 callState: action.callState,
             };
-        case callAction.CALL_SET_CALLING_STATE:
+        case callAction.CALL_SET_CALLING_DIALOG_VISIBLE:
+            console.log(action.callingDialogVisible)
             return {
                 ...state,
                 callingDialogVisible: action.callingDialogVisible,
             };
         case callAction.CALL_SET_CALLER_USERNAME:
+            console.log(action.callerUserName)
             return {
                 ...state,
                 callerUserName: action.callerUserName,
+            };
+        case callAction.CALL_SET_CALL_REJECTED:
+            return {
+                ...state,
+                callRejected: action.callRejected,
             };
         default:
             return state

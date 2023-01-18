@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import styles from './styles.module.scss'
 import classNames from "classnames";
+import {acceptIncomingCallRequest, rejectIncomingCallRequest} from "../../utils/webRtc/webRtcHandler";
 
 interface IncomingCallDialogType{
     callerUserName:string
@@ -9,9 +10,11 @@ interface IncomingCallDialogType{
 const IncomingCallDialog: FC<IncomingCallDialogType> = ({callerUserName}:IncomingCallDialogType) => {
     const handleAcceptButtonPressed = () => {
         // 接听呼叫
+        acceptIncomingCallRequest()
     }
     const handleRejectButtonPressed = () => {
         // 拒绝呼叫
+        rejectIncomingCallRequest()
     }
     return (
         <div className={classNames(styles.direct_calling_dialog, 'background_secondary_color')}>

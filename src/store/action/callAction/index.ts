@@ -1,13 +1,18 @@
 // 本地媒体流
 // import {callStateType} from "./types";
 
+import {callRejectedType} from "../../reducers/callReducer/types";
+
 export const CALL_SET_LOCL_STREM = 'CALL_SET_LOCL_STREM'
 // 远端媒体流
 export const CALL_SET_REMOTE_STREAM = 'CALL_SET_REMOTE_STREAM';
-export const CALL_SET_CALL_STATE  = 'CALL_SET_CALL_STATE'
+export const CALL_SET_CALL_STATE = 'CALL_SET_CALL_STATE'
 
 export const CALL_SET_CALLING_STATE = 'CALL_SET_CALLING_STATE'
 export const CALL_SET_CALLER_USERNAME = 'CALL_SET_CALLER_USERNAME'
+export const CALL_SET_CALL_REJECTED = 'CALL_SET_CALL_REJECTED'
+export const CALL_SET_CALLING_DIALOG_VISIBLE =
+    'CALL_SET_CALLING_DIALOG_VISIBLE';
 /*
 * 呼叫状态
 * CALL_UNAVATLABLE 不可用，没有获取媒体流
@@ -16,10 +21,10 @@ export const CALL_SET_CALLER_USERNAME = 'CALL_SET_CALLER_USERNAME'
 * CALL_IN_PROGRESS 正在进行
 * */
 export const callState = {
-    CALL_UNAVATLABLE : 'CALL_UNAVATLABLE',
-    CALL_AVAILABLE :'CALL_AVAILABLE',
-    CALL_REQUESTED:'CALL_REQUESTED',
-    CALL_IN_PROGRESS:'CALL_IN_PROGRESS'
+    CALL_UNAVATLABLE: 'CALL_UNAVATLABLE',
+    CALL_AVAILABLE: 'CALL_AVAILABLE',
+    CALL_REQUESTED: 'CALL_REQUESTED',
+    CALL_IN_PROGRESS: 'CALL_IN_PROGRESS'
 }
 
 // 本地媒体流
@@ -38,24 +43,34 @@ export const setRemoteStream = (remoteStream: MediaStream) => {
     };
 };
 
-export const setCallState = (callState: string)=>{
+export const setCallState = (callState: string) => {
     return {
-        type:CALL_SET_CALL_STATE,
+        type: CALL_SET_CALL_STATE,
         callState
     }
 }
 
 // 设置呼叫框的状态
-export const setCallingDialogVisble = (callingDialogVisible:boolean)=>{
+export const setCallingDialogVisble = (callingDialogVisible: boolean) => {
     return {
-        type:CALL_SET_CALLING_STATE,
+        type: CALL_SET_CALLING_DIALOG_VISIBLE,
         callingDialogVisible
     }
 }
 // 设置呼叫者的用户姓名
-export const setCallerUsername = (callerUsername:string)=>{
+export const setCallerUsername = (callerUsername: string) => {
     return {
-        type:CALL_SET_CALLER_USERNAME,
+        type: CALL_SET_CALLER_USERNAME,
         callerUsername
+    }
+}
+// 设置通信拒绝
+export const setCallRejected = (callRejectedDetails: callRejectedType) => {
+    return {
+        type: CALL_SET_CALL_REJECTED,
+        callRejected: {
+            rejected: callRejectedDetails.rejected,
+            reason: callRejectedDetails.reason
+        }
     }
 }

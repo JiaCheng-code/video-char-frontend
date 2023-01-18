@@ -1,11 +1,29 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import styles from './styles.module.scss'
 import classNames from "classnames";
+import {clearTimeout} from "timers";
 
-const CallRejectDialog:FC = ()=>{
+interface CallRejectDialogType {
+    reason: string,
+    hideCallRejectedDialog: Function
+}
+
+const CallRejectDialog: FC<CallRejectDialogType> = ({reason, hideCallRejectedDialog}: CallRejectDialogType) => {
+    useEffect(() => {
+         setTimeout(() => {
+            hideCallRejectedDialog({
+                rejected: false,
+                reason: ''
+            })
+        }, 4000)
+        // return () => {
+        //     clearTimeout(time_id)
+        // }
+
+    }, [])
     return (
-        <div className={classNames(styles.call_rejected_dialog,'background_secondary_color')}>
-            <span>Call Rejected</span>
+        <div className={classNames(styles.call_rejected_dialog, 'background_secondary_color')}>
+            <span>{reason}</span>
         </div>
     )
 }
