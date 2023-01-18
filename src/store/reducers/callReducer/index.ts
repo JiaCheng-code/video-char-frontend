@@ -38,7 +38,6 @@ const reducer = (state = initialState, action: actionType) => {
                 callingDialogVisible: action.callingDialogVisible,
             };
         case callAction.CALL_SET_CALLER_USERNAME:
-            console.log(action.callerUserName)
             return {
                 ...state,
                 callerUserName: action.callerUserName,

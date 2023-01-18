@@ -58,10 +58,10 @@ export const setCallingDialogVisble = (callingDialogVisible: boolean) => {
     }
 }
 // 设置呼叫者的用户姓名
-export const setCallerUsername = (callerUsername: string) => {
+export const setCallerUsername = (callerUserName: string) => {
     return {
         type: CALL_SET_CALLER_USERNAME,
-        callerUsername
+        callerUserName
     }
 }
 // 设置通信拒绝

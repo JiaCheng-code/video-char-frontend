@@ -40,18 +40,16 @@ export const callToOtherUser = (calleeDetails: activeUserType) => {
     store.dispatch(setCallingDialogVisble(true))
 
     const {getState}: any = store;
-    console.log(getState().dashboard.username)
     wss.sendPreOffer({
         callee: calleeDetails,
         caller: {
-            username: getState().dashboard.username
+            username: getState().dashboard.userName
         }
     })
 }
 
 // 处理从访问返回的呼叫者的数据，并存储它的sockid以及callerusername
 export const handlePreOffer = (data: handlePreOfferType) => {
-    console.log(checkIfCallPossible())
     // 边界判断是否有其他因素影响通信
     if (checkIfCallPossible()) {
         console.log(data)
